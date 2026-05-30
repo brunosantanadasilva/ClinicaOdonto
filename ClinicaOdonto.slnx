@@ -1,0 +1,13 @@
+<Solution>
+  <Project Path="ClinicaOdonoto.Infra/ClinicaOdonoto.Infra.csproj">
+    <BuildDependency Project="ClinicaOdonto.Dominio/ClinicaOdonto.Dominio.csproj" />
+  </Project>
+  <Project Path="ClinicaOdonto.Aplicacao/ClinicaOdonto.Aplicacao.csproj">
+    <BuildDependency Project="ClinicaOdonto.Dominio/ClinicaOdonto.Dominio.csproj" />
+  </Project>
+  <Project Path="ClinicaOdonto.ConsoleApp/ClinicaOdonto.ConsoleApp.csproj">
+    <BuildDependency Project="ClinicaOdonoto.Infra/ClinicaOdonoto.Infra.csproj" />
+    <BuildDependency Project="ClinicaOdonto.Aplicacao/ClinicaOdonto.Aplicacao.csproj" />
+  </Project>
+  <Project Path="ClinicaOdonto.Dominio/ClinicaOdonto.Dominio.csproj" />
+</Solution>
