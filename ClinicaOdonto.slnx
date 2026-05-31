@@ -9,5 +9,6 @@
     <BuildDependency Project="ClinicaOdonoto.Infra/ClinicaOdonoto.Infra.csproj" />
     <BuildDependency Project="ClinicaOdonto.Aplicacao/ClinicaOdonto.Aplicacao.csproj" />
   </Project>
+  <Project Path="ClinicaOdonto.Dominio.Tests/ClinicaOdonto.Dominio.Tests.csproj" />
   <Project Path="ClinicaOdonto.Dominio/ClinicaOdonto.Dominio.csproj" />
 </Solution>
