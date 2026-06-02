@@ -3,35 +3,33 @@ using ClinicaOdonto.Dominio.AgregadoConsulta;
 using ClinicaOdonto.Dominio.AgregadoDentista;
 using ClinicaOdonto.Dominio.AgregadoPaciente;
 
-namespace ClinicaOdonto.Aplicacao.Servicos;
-
 public class AgendamentoAppService
 {
     private readonly IPacienteRepositorio _pacienteRepo;
     private readonly IDentistaRepositorio _dentistaRepo;
-    private readonly IMarcarConsultaService _marcarConsultaService;
+    private readonly IMarcarConsultaService _domainService;
 
     public AgendamentoAppService(
         IPacienteRepositorio pacienteRepo,
         IDentistaRepositorio dentistaRepo,
-        IMarcarConsultaService marcarConsultaService)
+        IMarcarConsultaService domainService)
     {
         _pacienteRepo = pacienteRepo;
         _dentistaRepo = dentistaRepo;
-        _marcarConsultaService = marcarConsultaService;
+        _domainService = domainService;
     }
 
-    public void ExecutarFluxoAgendamento(string cpfPaciente, Especialidade especialidade, DateTime dataHora)
+    public void ExecutarFluxoAgendamento(string pacienteCpf, Especialidade especialidade, DateTime dataHora)
     {
-        // 1. Busca o paciente pelo CPF
-        var paciente = _pacienteRepo.ObterPorCpf(cpfPaciente)
-            ?? throw new Exception("Paciente não encontrado no sistema.");
+        // 1. Recupera o paciente pelo CPF na base simulada
+        var paciente = _pacienteRepo.ObterPorCpf(pacienteCpf)
+            ?? throw new Exception("Paciente não encontrado para o CPF especificado.");
 
-        // 2. Busca o Dentista responsável por aquela Especialidade
+        // 2. CORREÇÃO: Recupera o dentista usando o método que você postou
         var dentista = _dentistaRepo.ObterPorEspecialidade(especialidade)
-            ?? throw new Exception("Nenhum dentista disponível para esta especialidade.");
+            ?? throw new Exception($"Nenhum dentista encontrado com a especialidade {especialidade}.");
 
-        // 3. Aciona o Serviço de Domínio passando os objetos carregados
-        _marcarConsultaService.MarcarConsulta(paciente, dentista, dataHora);
+        // 3. Repassa as entidades higienizadas para as regras de negócio no Domain Service
+        _domainService.MarcarConsulta(paciente, dentista, dataHora);
     }
 }

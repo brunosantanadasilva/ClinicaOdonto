@@ -1,7 +1,8 @@
-﻿using System;
-using ClinicaOdonto.Dominio.AgregadoConsulta;
+﻿using ClinicaOdonto.Dominio.AgregadoConsulta;
 using ClinicaOdonto.Dominio.AgregadoDentista;
 using ClinicaOdonto.Dominio.AgregadoPaciente;
+using ClinicaOdonto.Dominio.Comum;
+using System;
 using Xunit;
 
 namespace ClinicaOdonto.Dominio.Tests.AgregadoConsulta;
@@ -11,8 +12,8 @@ public class ConsultaTests
     // Método auxiliar (Stub) para fabricar objetos válidos base para os testes
     private (Paciente, Dentista) CriarDadosBase()
     {
-        var paciente = new Paciente("12345678900", "Bruno Silva", new DateTime(1995, 3, 10), "99999-1111");
-        var dentista = new Dentista("11111111111", "Dr. Mikael", new DateTime(1980, 5, 20), "98888-7777", Especialidade.ClinicoGeral);
+        var paciente = new Paciente("12345678900", "Bruno Silva", new DateTime(1995, 3, 10), new Whatsapp("11999991111"));
+        var dentista = new Dentista("11111111111", "Dr. Mikael", new DateTime(1980, 5, 20), new Whatsapp("11988887777"), Especialidade.ClinicoGeral);
         return (paciente, dentista);
     }
 

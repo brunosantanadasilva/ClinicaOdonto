@@ -8,7 +8,7 @@ namespace ClinicaOdonto.Dominio.AgregadoPaciente
     {
         public Guid Id { get; private set; }
 
-        public Paciente(string cpf, string nome, DateTime dataNascimento, string whatsapp)
+        public Paciente(string cpf, string nome, DateTime dataNascimento, Whatsapp whatsapp)
             : base(cpf, nome, dataNascimento, whatsapp) // Repassa os dados para o construtor base de Pessoa
         {
             Id = Guid.NewGuid();

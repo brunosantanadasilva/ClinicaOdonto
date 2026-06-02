@@ -1,8 +1,9 @@
-﻿using System;
-using ClinicaOdonto.Dominio.AgregadoConsulta;
+﻿using ClinicaOdonto.Dominio.AgregadoConsulta;
 using ClinicaOdonto.Dominio.AgregadoDentista;
 using ClinicaOdonto.Dominio.AgregadoPaciente;
+using ClinicaOdonto.Dominio.Comum;
 using NSubstitute;
+using System;
 using Xunit;
 
 namespace ClinicaOdonto.Dominio.Tests.AgregadoConsulta;
@@ -23,8 +24,8 @@ public class MarcarConsultaServiceTests
         _service = new MarcarConsultaService(_repositoryMock);
 
         // Dummies de dados para suporte
-        _pacienteDummy = new Paciente("12345678900", "Bruno Silva", new DateTime(1995, 3, 10), "99999-1111");
-        _dentistaDummy = new Dentista("11111111111", "Dr. Mikael", new DateTime(1980, 5, 20), "98888-7777", Especialidade.ClinicoGeral);
+        _pacienteDummy = new Paciente("12345678900", "Bruno Silva", new DateTime(1995, 3, 10), new Whatsapp("11999991111"));
+        _dentistaDummy = new Dentista("11111111111", "Dr. Mikael", new DateTime(1980, 5, 20), new Whatsapp("11988887777"), Especialidade.ClinicoGeral);
     }
 
     [Fact]

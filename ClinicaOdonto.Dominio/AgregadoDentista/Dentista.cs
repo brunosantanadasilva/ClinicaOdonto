@@ -11,7 +11,7 @@ namespace ClinicaOdonto.Dominio.AgregadoDentista
         public Guid Id { get; private set; }
         public Especialidade Especialidade { get; private set; }
 
-        public Dentista(string cpf, string nome, DateTime dataNascimento, string whatsapp, Especialidade especialidade)
+        public Dentista(string cpf, string nome, DateTime dataNascimento, Whatsapp whatsapp, Especialidade especialidade)
             : base(cpf, nome, dataNascimento, whatsapp)
         {
             Id = Guid.NewGuid();

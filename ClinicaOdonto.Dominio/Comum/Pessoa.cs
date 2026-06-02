@@ -11,10 +11,12 @@ namespace ClinicaOdonto.Dominio.Comum
         public string CPF { get; private set; }
         public string Nome { get; private set; }
         public DateTime DataNascimento { get; private set; }
-        public string Whatsapp { get; private set; }
+
+        // VALUE OBJECT
+        public Whatsapp Whatsapp { get; private set; }
 
         // CONSTRUTOR: Garante que nenhuma Pessoa nasça com dados inválidos ou nulos
-        protected Pessoa(string cpf, string nome, DateTime dataNascimento, string whatsapp)
+        protected Pessoa(string cpf, string nome, DateTime dataNascimento, Whatsapp whatsapp)
         {
             if (string.IsNullOrWhiteSpace(cpf)) throw new ArgumentException("CPF é obrigatório.");
             if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException("Nome é obrigatório.");
@@ -23,7 +25,7 @@ namespace ClinicaOdonto.Dominio.Comum
             CPF = cpf;
             Nome = nome;
             DataNascimento = dataNascimento;
-            Whatsapp = whatsapp;
+            Whatsapp = whatsapp ?? throw new ArgumentNullException(nameof(whatsapp));
         }
 
         // POLIMORFISMO: Método virtual que permite que as subclasses 
