@@ -16,13 +16,6 @@ namespace ClinicaOdonoto.Infra.Repositorios
          ];
 
 
-        public Dentista? ObterPorId(Guid id)
-            => _bancoDeDados.FirstOrDefault(d => d.Id == id);
-
-        public void Inserir(Dentista d) => _bancoDeDados.Add(d);
-        public void Remover(Dentista d) => _bancoDeDados.Remove(d);
-        public void Blacklist(Dentista d) { }
-
         public Dentista? ObterPorEspecialidade(Especialidade esp) => _bancoDeDados.FirstOrDefault(d => d.Especialidade == esp);
     }
 }

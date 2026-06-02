@@ -14,8 +14,6 @@ public class ConsultaRepositorio : IConsultaRepositorio
     private static readonly List<Consulta> _bancoDeDados = [];
 
     public void Inserir(Consulta consulta) => _bancoDeDados.Add(consulta);
-    public void Remover(Consulta consulta) => _bancoDeDados.Remove(consulta);
-    public void Atualizar(Consulta consulta) { /* Mock */ }
 
     public bool ExisteConsultaNoPeriodo(Guid dentistaId, DateTime dataHora)
     {

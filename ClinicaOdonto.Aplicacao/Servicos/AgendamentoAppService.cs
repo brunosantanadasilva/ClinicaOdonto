@@ -1,7 +1,8 @@
-﻿using System;
-using ClinicaOdonto.Dominio.AgregadoConsulta;
+﻿using ClinicaOdonto.Dominio.AgregadoConsulta;
 using ClinicaOdonto.Dominio.AgregadoDentista;
 using ClinicaOdonto.Dominio.AgregadoPaciente;
+using ClinicaOdonto.Dominio.Comum;
+using System;
 
 public class AgendamentoAppService
 {
@@ -17,6 +18,21 @@ public class AgendamentoAppService
         _pacienteRepo = pacienteRepo;
         _dentistaRepo = dentistaRepo;
         _domainService = domainService;
+    }
+
+    public void CadastrarNovoPaciente(string cpf, string nome, DateTime dataNascimento, string numeroWhatsapp)
+    {
+        // 1. Valida se o paciente já existe para evitar duplicidade
+        var pacienteExistente = _pacienteRepo.ObterPorCpf(cpf);
+        if (pacienteExistente != null)
+            throw new InvalidOperationException("Já existe um paciente cadastrado com este CPF.");
+
+        // 2. Instancia o Value Object e a Entidade (as validações internas do construtor rodam aqui)
+        var whatsappVo = new Whatsapp(numeroWhatsapp);
+        var novoPaciente = new Paciente(cpf, nome, dataNascimento, whatsappVo);
+
+        // 3. Envia para a infraestrutura persistir no banco
+        _pacienteRepo.Inserir(novoPaciente);
     }
 
     public void ExecutarFluxoAgendamento(string pacienteCpf, Especialidade especialidade, DateTime dataHora)
